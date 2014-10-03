@@ -9,10 +9,16 @@ var args = document.location.search.split(',').map(function(e) {
 });
 var Hexagon = args[0] || 0;
 var Wall    = args[1];
-var Shelf   = args[3];
-var Book    = args[4];
-var Page    = args[5];
+var Shelf   = args[2];
+var Book    = args[3];
+var Page    = args[4];
 
+// COMMON ---------------------------------------------------------------------
+function letter() {
+  return OrthographicSymbols[Math.floor(Math.random() * OrthographicSymbols.length)];
+}
+
+// PAGE -----------------------------------------------------------------------
 function pageHeader() {
   var header = document.createElement('p');
   header.setAttribute('class', 'header');
@@ -41,22 +47,41 @@ function pageFooter() {
 
   var prev = document.createElement('A');
   if(Page > 1) {
-    prev.setAttribute('href', 'page.html?' + [Hexagon, Shelf, Book, Page-1].join(','));
+    prev.setAttribute('href', 'page.html?' + [Hexagon, Wall, Shelf, Book, Page-1].join(','));
   }
   prev.innerHTML = 'prev';
   footer.appendChild(prev);
 
   var back = document.createElement('A');
-  back.setAttribute('href', 'shelf.html?' + [Hexagon, Shelf, Book].join(','));
+  back.setAttribute('href', 'shelf.html?' + [Hexagon, Wall, Shelf, Book].join(','));
   back.innerHTML = 'back';
   footer.appendChild(back);
 
   var next = document.createElement('A');
   if(Page < 410) {
-    next.setAttribute('href', 'page.html?' + [Hexagon, Shelf, Book, Page+1].join(','));
+    next.setAttribute('href', 'page.html?' + [Hexagon, Wall, Shelf, Book, Page+1].join(','));
   }
   next.innerHTML = 'next';
   footer.appendChild(next);
+
+  return footer;
+}
+
+// SHELF ----------------------------------------------------------------------
+function wallHeader() {
+  var header = document.createElement('p');
+  header.setAttribute('class', 'header');
+  return header;
+}
+
+function wallFooter() {
+  var footer = document.createElement('div');
+  footer.setAttribute('class', 'footer');
+
+  var back = document.createElement('A');
+  back.setAttribute('href', 'hexagon.html?' + [Hexagon, Wall, Shelf].join(','));
+  back.innerHTML = 'back';
+  footer.appendChild(back);
 
   return footer;
 }
@@ -69,7 +94,7 @@ function wall() {
       var book = document.createElement('TD');
       var linkToBook = document.createElement('A');
       linkToBook.setAttribute('class', 'spine');
-      linkToBook.setAttribute('href', 'page.html?' + [Hexagon, s, b, 1].join(','));
+      linkToBook.setAttribute('href', 'page.html?' + [Hexagon, Wall, s, b, 1].join(','));
       for(i = 0; i < 5; i++) {
         var spine = document.createElement('SPAN');
         spine.setAttribute('class',
@@ -83,8 +108,4 @@ function wall() {
     wall.appendChild(shelf);
   }
   return wall;
-}
-
-function letter() {
-  return OrthographicSymbols[Math.floor(Math.random() * OrthographicSymbols.length)];
 }
