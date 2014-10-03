@@ -1,0 +1,50 @@
+tr {
+  border: solid 1px black;
+}
+td { 
+  border: solid 1px black;
+  padding: 5px;
+}
+td a {
+  text-decoration: none;
+}
+.page {
+  margin: 32px 32px 32px 32px;
+  text-align: justify;
+}
+.header,.footer {
+  padding-left: 32px;
+  margin: 32px 0 32px 0;
+  width: 100%;
+  text-align: left;
+}
+.footer a {
+  margin: 0 32px 0 0;
+}
+.book {
+  display: block;
+  margin: 0;
+  padding: 0.25em;
+  border: 0;
+  height: 1.00em;
+  width: 0.50em;
+  line-height: 1.25em;
+}
+.rotate { 
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  /*
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  -o-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+   */
+  /* Should be unset in IE9+ I think. */
+  /*
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+   */
+}
